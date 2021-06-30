@@ -127,7 +127,9 @@ namespace R7O_MDL_Extractor
         [STAThread]
         static void Main()
         {
+            Console.WriteLine("Select File to Extract from:");
             List<string> paths = FileSplitter.SplitFile("R7O");
+            Console.WriteLine("Converting to OBJ's:");
             foreach (var path in paths/*.Where(s => s.Contains("43080"))*/)
             {
                 byte[] buffer = File.ReadAllBytes(path);
@@ -272,6 +274,9 @@ namespace R7O_MDL_Extractor
 
 
                         obj.WriteTo(path.Replace("R7O", "obj"));
+                        Console.WriteLine("Created: " + path.Replace("R7O", "obj"));
+                        string patternStr = pattern.Key.Select(k => (k + 1).ToString()).Aggregate((k, k2) => { k += " " + k2; return k; });
+                        Console.WriteLine("Pattern Used: {0} V: {1} F: {2}", patternStr, obj.Vertices.Count, obj.Faces.Count);
                         break;
 
                     }
@@ -281,6 +286,8 @@ namespace R7O_MDL_Extractor
                     }
                 }
             }
+            Console.WriteLine("Job Complete.");
+            Console.ReadLine();
         }
         public struct MeshPattern
         {

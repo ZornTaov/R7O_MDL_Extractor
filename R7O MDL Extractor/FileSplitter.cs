@@ -63,6 +63,7 @@ namespace R7O_MDL_Extractor
             Buffer.BlockCopy(buffer, mdlStart, subMdlBuffer, 0, mdlEnd - mdlStart);
             Directory.CreateDirectory(filename + "_parts/");
             File.WriteAllBytes(path, subMdlBuffer);
+            Console.WriteLine("Created: " + path);
         }
     }
 }
