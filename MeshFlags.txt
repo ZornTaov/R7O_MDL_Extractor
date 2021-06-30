@@ -1,0 +1,25 @@
+
+01 00 02:	Floating Point || UV Only || 20 stride
+01 24 02:	Floating Point || Normals, Normal Weights? & UV || 44 stride
+00 06 03:   Half Float || Normals only || 12 stride
+01 80 03:	Half Float || UV Only || 10 stride
+01 86 03:	Half Float || Normals, UV || 16 stride
+01 86 23:	Half Float || Vertex Color, Normals, UV || 20 stride
+01 B6 03:	Half Float || Normals, Normal Weights? & UV || 22 stride
+81 86 23:	Half Float || Vertex Color, Normals, UV, Bones? || 28 stride
+
+byte 1:
+01 = UV
+80 = bones?
+
+byte 2:
+02 = ?
+04 = normal
+10 = ?
+20 = normal weight?
+80 = half float
+
+byte 3:
+01 = half float
+02 = common flag
+20 = vertex color
