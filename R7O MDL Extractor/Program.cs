@@ -11,7 +11,7 @@ namespace R7O_MDL_Extractor
     {
         private static readonly Dictionary<byte[], MeshPattern> patterns = new Dictionary<byte[], MeshPattern>
         {
-            {
+            /*{
                 new byte[]{ 0x01, 0x00, 0x02 }, new MeshPattern()
                 {
                     HalfFloat = false,
@@ -23,7 +23,7 @@ namespace R7O_MDL_Extractor
                     Bones = false,
                     bytepattern = "vxvyvzuxuy"
                 }
-            },
+            },*/
             {
                 new byte[]{ 0x01, 0x24, 0x02 }, new MeshPattern()
                 {
