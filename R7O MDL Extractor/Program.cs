@@ -158,7 +158,7 @@ namespace R7O_MDL_Extractor
                         }
 
                         int length = BitConverter.ToInt32(buffer.Skip(index+3).Take(4).Reverse().ToArray(), 0);
-                        if (length < 0)
+                        if (length < 0 || length > buffer.Length)
                         {
                             continue;
                         }
