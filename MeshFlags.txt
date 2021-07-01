@@ -3,6 +3,7 @@
 01 24 02:	Floating Point || Normals, Normal Weights? & UV || 44 stride
 00 06 03:   Half Float || Normals only || 12 stride
 01 80 03:	Half Float || UV Only || 10 stride
+01 80 23:	Half Float || Vertex Color, UV || 14 stride
 01 86 03:	Half Float || Normals, UV || 16 stride
 01 86 23:	Half Float || Vertex Color, Normals, UV || 20 stride
 01 B6 03:	Half Float || Normals, Normal Weights? & UV || 22 stride

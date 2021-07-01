@@ -64,6 +64,19 @@ namespace R7O_MDL_Extractor
                 }
             },
             {
+                new byte[]{ 0x01, 0x80, 0x23 }, new MeshPattern()
+                {
+                    HalfFloat = true,
+                    stride = 14,
+                    VertexColors = true,
+                    Normals = false,
+                    NormalWeights = false,
+                    UVs = true,
+                    Bones = false,
+                    bytepattern = "vxvyvzuxuy"
+                }
+            },
+            {
                 new byte[]{ 0x01, 0x86, 0x03 }, new MeshPattern()
                 {
                     HalfFloat = true,
