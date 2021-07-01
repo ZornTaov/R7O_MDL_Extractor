@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using JeremyAnsel.Media.WavefrontObj;
 
 namespace R7O_MDL_Extractor
@@ -141,9 +142,28 @@ namespace R7O_MDL_Extractor
         static void Main()
         {
             Console.WriteLine("Select File to Extract from:");
-            List<string> paths = FileSplitter.SplitFile("R7O");
+            // Open dialog for user to supply a file.
+            string filename, splitStr;
+            byte[] filebuffer;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+                filename = openFileDialog.FileName;
+            }
+            Console.WriteLine(filename);
+            Console.WriteLine("Enter search string (R7O or R7M):");
+
+            splitStr = Console.ReadLine();
+            // get all data from file.
+            filebuffer = File.ReadAllBytes(filename);
+
+            List<string> paths = FileSplitter.SplitFile(filebuffer, splitStr, filename);
+
             Console.WriteLine("Converting to OBJ's:");
-            foreach (var path in paths/*.Where(s => s.Contains("43080"))*/)
+            foreach (var path in paths/*.Where(s => s.Contains("000006E0"))*/)
             {
                 byte[] buffer = File.ReadAllBytes(path);
                 foreach (var pattern in patterns)
@@ -286,8 +306,8 @@ namespace R7O_MDL_Extractor
                         }
 
 
-                        obj.WriteTo(path.Replace("R7O", "obj"));
-                        Console.WriteLine("Created: " + path.Replace("R7O", "obj"));
+                        obj.WriteTo(path.Replace(splitStr, "obj"));
+                        Console.WriteLine("Created: " + path.Replace(splitStr, "obj"));
                         string patternStr = pattern.Key.Select(k => (k + 1).ToString()).Aggregate((k, k2) => { k += " " + k2; return k; });
                         Console.WriteLine("Pattern Used: {0} V: {1} F: {2}", patternStr, obj.Vertices.Count, obj.Faces.Count);
                         break;

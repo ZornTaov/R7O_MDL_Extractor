@@ -9,22 +9,9 @@ namespace R7O_MDL_Extractor
 {
     public class FileSplitter
     {
-        public static List<string> SplitFile(string splitStr)
+        public static List<string> SplitFile(byte[] buffer, string splitStr, string filename)
         {
             List<string> paths = new List<string>();
-            byte[] buffer;
-            string filename;
-            // Open dialog for user to supply a file.
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                if (openFileDialog.ShowDialog() != DialogResult.OK)
-                {
-                    return null;
-                }
-                filename = openFileDialog.FileName;
-            }
-            // get all data from file.
-            buffer = File.ReadAllBytes(filename);
             int index = 0;
             int mdlStart = int.MinValue;
             int mdlEnd;
